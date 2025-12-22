@@ -1,59 +1,10 @@
-const display = document.getElementById("display");
+const resumeInput = document.getElementById("resume");
+const fileName = document.getElementById("file-name");
 
-let current = "";
-let operator = "";
-let previous = "";
-
-function update() {
-    display.textContent = current || "0";
-}
-
-document.querySelectorAll(".keys button").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const value = btn.textContent;
-
-        if (!isNaN(value) || value === ".") {
-            if (value === "." && current.includes(".")) return;
-            current += value;
-        } 
-        else if (value === "C") {
-            current = "";
-            previous = "";
-            operator = "";
-        } 
-        else {
-            if (current === "") return;
-            previous = current;
-            operator = value;
-            current = "";
-        }
-
-        update();
-    });
-});
-
-document.getElementById("equal").addEventListener("click", () => {
-    if (current === "" || previous === "" || operator === "") return;
-
-    let result = 0;
-
-    switch (operator) {
-        case "+":
-            result = parseFloat(previous) + parseFloat(current);
-            break;
-        case "-":
-            result = parseFloat(previous) - parseFloat(current);
-            break;
-        case "*":
-            result = parseFloat(previous) * parseFloat(current);
-            break;
-        case "/":
-            result = parseFloat(previous) / parseFloat(current);
-            break;
+resumeInput.addEventListener("change", function () {
+    if (this.files.length > 0) {
+        fileName.textContent = "Selected File: " + this.files[0].name;
+    } else {
+        fileName.textContent = "No file selected";
     }
-
-    current = String(result);
-    previous = "";
-    operator = "";
-    update();
 });
