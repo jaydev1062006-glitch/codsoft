@@ -1,33 +1,59 @@
-// YEAR
-document.getElementById("year").textContent = new Date().getFullYear();
+const display = document.getElementById("display");
 
-// RESUME UPLOAD
-const resumeUpload = document.getElementById("resumeUpload");
-const fileName = document.getElementById("fileName");
-const previewBtn = document.getElementById("previewBtn");
-const downloadBtn = document.getElementById("downloadBtn");
+let current = "";
+let operator = "";
+let previous = "";
 
-let resumeURL = "";
+function update() {
+    display.textContent = current || "0";
+}
 
-resumeUpload.addEventListener("change", () => {
-    const file = resumeUpload.files[0];
+document.querySelectorAll(".keys button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const value = btn.textContent;
 
-    if(file && file.type === "application/pdf"){
-        fileName.textContent = file.name;
-        resumeURL = URL.createObjectURL(file);
-        previewBtn.disabled = false;
-        downloadBtn.style.display = "inline-block";
-        downloadBtn.href = resumeURL;
-        downloadBtn.download = file.name;
-    } else {
-        alert("Only PDF allowed");
-        resumeUpload.value = "";
-    }
+        if (!isNaN(value) || value === ".") {
+            if (value === "." && current.includes(".")) return;
+            current += value;
+        } 
+        else if (value === "C") {
+            current = "";
+            previous = "";
+            operator = "";
+        } 
+        else {
+            if (current === "") return;
+            previous = current;
+            operator = value;
+            current = "";
+        }
+
+        update();
+    });
 });
 
-// Preview
-previewBtn.addEventListener("click", () => {
-    if(resumeURL){
-        window.open(resumeURL, "_blank");
+document.getElementById("equal").addEventListener("click", () => {
+    if (current === "" || previous === "" || operator === "") return;
+
+    let result = 0;
+
+    switch (operator) {
+        case "+":
+            result = parseFloat(previous) + parseFloat(current);
+            break;
+        case "-":
+            result = parseFloat(previous) - parseFloat(current);
+            break;
+        case "*":
+            result = parseFloat(previous) * parseFloat(current);
+            break;
+        case "/":
+            result = parseFloat(previous) / parseFloat(current);
+            break;
     }
+
+    current = String(result);
+    previous = "";
+    operator = "";
+    update();
 });
