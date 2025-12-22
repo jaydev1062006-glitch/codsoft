@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaydev | Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <h2 class="logo">Jaydev<span>.</span></h2>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <div class="hero-content">
+
+        <div class="hero-text">
+            <h1>Hello, I’m <span>Jaydev</span></h1>
+            <p>A passionate Frontend Developer creating modern UI designs.</p>
+
+            <div class="hero-btns">
+                <a href="#projects" class="btn">View Projects</a>
+                <a href="assets/jaydev_resume.pdf" class="btn btn-outline" download>
+                    Download Resume
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-img">
+            <img src="assets/profile.jpg.jfif" alt="Jaydev Photo">
+        </div>
+
+    </div>
+</section>
+
+<section id="skills" class="skills">
+    <h2 class="section-title">My Skills</h2>
+    <div class="skill-container">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">React</div>
+        <div class="skill">UI / UX</div>
+    </div>
+</section>
+
+<section id="projects" class="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-grid">
+        <div class="project-card">
+            <h3>Portfolio Website</h3>
+            <p>Personal responsive portfolio website using HTML & CSS.</p>
+        </div>
+        <div class="project-card">
+            <h3>Landing Page</h3>
+            <p>Modern landing page with animations.</p>
+        </div>
+        <div class="project-card">
+            <h3>Calculator</h3>
+            <p>JavaScript based functional calculator.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= RESUME UPLOAD ================= -->
+<section id="resume" class="resume">
+    <h2 class="section-title">My Resume</h2>
+
+    <div class="resume-box">
+        <p>Upload Resume (PDF)</p>
+
+        <input type="file" id="resumeUpload" accept="application/pdf">
+        <p id="fileName">No file selected</p>
+
+        <div class="resume-btns">
+            <button class="btn" id="previewBtn" disabled>Preview</button>
+            <a class="btn btn-outline" id="downloadBtn" style="display:none;" download>
+                Download
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <form id="contactForm">
+        <input type="text" placeholder="your name" required>
+        <input type="email" placeholder="your gmail" required>
+        <textarea rows="5" placeholder="your massage..." required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    <p>© <span id="year"></span> Jaydev | All Rights Reserved</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
